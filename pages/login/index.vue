@@ -5,6 +5,7 @@ const email = ref("");
 const password = ref("");
 
 const errorMessage = ref<Record<string, string[]>>();
+const cookieToken = useCookie("token");
 
 const handleLogin = async () => {
   try {
@@ -14,7 +15,10 @@ const handleLogin = async () => {
     });
 
     console.log(response);
-    localStorage.setItem("token", response.token);
+    cookieToken.value = response.token;
+    email.value = "";
+    password.value = "";
+    navigateTo("/dashboard");
   } catch (error: any) {
     if (error?.data?.errors) {
       errorMessage.value = error?.data?.errors;
