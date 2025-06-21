@@ -1,9 +1,8 @@
 <script setup>
 definePageMeta({
   middleware: "auth",
+  layout: "custom",
 });
 </script>
 
-<template>
-  <h1>This is dashboard page and this is protected.</h1>
-</template>
+<template></template>
