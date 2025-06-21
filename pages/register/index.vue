@@ -18,6 +18,7 @@ const handleRegister = async () => {
     });
 
     console.log("Success", response);
+    return response;
   } catch (error: any) {
     if (error?.data?.errors) {
       errorMessage.value = error.data.errors;
