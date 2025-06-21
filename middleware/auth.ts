@@ -1,21 +1,23 @@
 import { jwtDecode } from "jwt-decode";
 
 export default defineNuxtRouteMiddleware(() => {
-  const token = useCookie("token").value;
-
-  if (!token) {
-    return navigateTo("/login");
-  }
-
   try {
-    const decoded: any = jwtDecode(token);
-    const now = Date.now() / 1000;
-    if (decoded.exp && decoded.exp < now) {
-      localStorage.removeItem("token");
+    const token = useCookie("token");
+
+    if (!token.value) {
       return navigateTo("/login");
     }
+    if (!token.value) {
+      const decoded: any = jwtDecode(token.value);
+      const now = Date.now() / 1000;
+
+      if (decoded.exp && decoded.exp < now) {
+        token.value = null;
+        return navigateTo("/login");
+      }
+    }
   } catch (err) {
-    localStorage.removeItem("token");
+    console.error("Error in auth middleware:", err);
     return navigateTo("/login");
   }
 });
