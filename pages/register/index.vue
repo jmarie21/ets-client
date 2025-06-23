@@ -17,7 +17,6 @@ const handleRegister = async () => {
       password: password.value,
     });
 
-    console.log("Success", response);
     return response;
   } catch (error: any) {
     if (error?.data?.errors) {

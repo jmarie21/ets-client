@@ -1,12 +1,9 @@
 <template>
   <SidebarProvider>
     <AppSidebar />
-    <main>
+    <main class="w-full">
       <SidebarTrigger />
       <slot />
     </main>
   </SidebarProvider>
-  <main>
-    <slot />
-  </main>
 </template>

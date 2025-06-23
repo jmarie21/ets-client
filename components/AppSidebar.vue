@@ -21,28 +21,13 @@ const logout = () => {
 const items = [
   {
     title: "Dashboard",
-    url: "#",
+    url: "/dashboard",
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
+    title: "Event Management",
+    url: "/event",
     icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
   },
 ];
 </script>
@@ -58,10 +43,10 @@ const items = [
           <SidebarMenu>
             <SidebarMenuItem v-for="item in items" :key="item.title">
               <SidebarMenuButton asChild>
-                <a :href="item.url">
+                <NuxtLink :href="item.url">
                   <component :is="item.icon" />
                   <span>{{ item.title }}</span>
-                </a>
+                </NuxtLink>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
